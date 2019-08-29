@@ -45,18 +45,16 @@ soc.on('message',e =>{
     soc.emit('message','iam hear')
 })
 
-document.onclick = function(e){
-  
-}
-function draw(e) {
 
+function draw(e) {
+        console.log('enter drow with '+paint);
+        
         if(paint){
         ctx.beginPath();
         ctx.lineWidth = siz;
         ctx.strokeStyle = e.color
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
-
         ctx.stroke();
         ctx.closePath();
         
@@ -67,6 +65,8 @@ function draw(e) {
     }
 }
 function findxy(e) {
+    console.log('enter findxy');
+
     if(clicked){
         
         prevX = currX;
@@ -84,13 +84,14 @@ function findxy(e) {
         currY = e.y - c.offsetTop;
     }
     
+    console.log('prevX' ,prevX ,'prevY' ,prevY ,'currX',currX,'currY' ,currY)
 }
 $('#myCanvas').click(function(e){
+    
     clicked = true
     paint = true;
-    findxy({x:e.clientX ,y:e.clientY})
-    draw({color:ctx.strokeStyle})
-    //soc.emit('canDrow')
+    // findxy({x:e.clientX ,y:e.clientY})
+    // draw({color:ctx.strokeStyle})
 })
    
 
@@ -102,20 +103,23 @@ $('#myCanvas').mouseup(function(e){
      paint = false;
     });
 $('#myCanvas').mouseleave(function(e){
+    
      soc.emit('no-drowing')
      paint = false; });
 $('#myCanvas').mousedown(function(e){ 
-    console.log('mousedown');
-    
-    soc.emit('canDrow')
+   
+     soc.emit('canDrow')
+     paint = true;
+     
      findxy({x:e.clientX ,y:e.clientY})
      draw({color:ctx.strokeStyle}) 
+     
  })
 $('#myCanvas').mousemove(function(e){ 
-    console.log("should drow");
     
     findxy({x:e.clientX ,y:e.clientY})
     draw({color:ctx.strokeStyle})
+
     soc.emit('moving',{x:e.clientX ,y:e.clientY,color:ctx.strokeStyle})
 });
 
@@ -126,16 +130,13 @@ $("#clear").click(function(e){
 
 soc.on('drowing',(e)=>{
     if(paint){
-    console.log("drowing",e);
     findxy(e)
     draw(e) 
  }
 })
 soc.on('no-drowing',()=>{
-    console.log('noDrowing');
     paint = false;
 })
 soc.on('canDrow',()=>{
-    console.log('canDrow');
     paint = true;
 })

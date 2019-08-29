@@ -50,20 +50,17 @@ io.on('connection', socket => {
         }
     }); 
     socket.on('moving',(e)=>{
-        console.log('moving',e);
         
         io.sockets.emit('drowing', e);
         
     }); 
     socket.on('no-drowing',()=>{
-        console.log('no drowing');
         
         io.sockets.emit('no-drowing');
     })
     socket.on('canDrow',()=>{
-        console.log('candrow');
         
-        socket.broadcast.emit('canDrow');
+        io.sockets.emit('canDrow');
     })
   });
 server.listen(3001,()=>{
