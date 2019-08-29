@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <style>
+       .centerFlex {
+                
+                margin: 15%;
+        }
+        .btn-left{
+            margin-left:62%; 
+            color: red;
+        }
+        .red-btn{
+            background-color:red;
+            width: 50px;
+            height: 50px;
+        }
+        .green-btn{
+            background-color:green;
+            width: 50px;
+            height: 50px;
+        }
+        .blue-btn{
+            background-color:blue;
+            width: 50px;
+            height: 50px;
+        }
+        .black-btn{
+            background-color:black;
+            width: 50px;
+            height: 50px;
+        }
+        .yellow-btn{
+            background-color:yellow;
+            width: 50px;
+            height: 50px;
+        }
+        .purple-btn{
+            background-color:purple;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+<body>
+    <div class="">
+
+    
+    <div>
+        <button id="red"    onclick="changeColor(this)" class="red-btn" ></button>
+        <button id="green"  onclick="changeColor(this)" class="green-btn"></button>
+        <button id="blue"   onclick="changeColor(this)" class="blue-btn"></button>
+        <button id="black"  onclick="changeColor(this)" class="black-btn"></button>
+        <button id="yellow" onclick="changeColor(this)" class="yellow-btn"></button>
+        <button id="purple" onclick="changeColor(this)" class="purple-btn"></button>
+        <button id="clear" class="btn-left"> clear</button>
+    </div>
+
+        <canvas id="myCanvas" width="1000" height="500" style="border:1px solid #000000;" ></canvas>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="./index.js"></script>
+
+</body>
+
+
+</html>
